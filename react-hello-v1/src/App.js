@@ -1,13 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Hello from "./components/Hello";
 
 const App = () => {
   const comp = (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>반갑습니다</p>
-        Learn React
+        <Hello />
       </header>
     </div>
   );

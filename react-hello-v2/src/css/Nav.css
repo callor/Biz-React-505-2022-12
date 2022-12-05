@@ -1,0 +1,23 @@
+nav.main {
+  background-color: blue;
+  color: white;
+}
+
+nav.main ul {
+  display: flex;
+  list-style: none;
+}
+
+nav.main li {
+  padding: 12px 16px;
+}
+
+nav.main li:hover {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+}
+
+nav.main li:nth-of-type(4) {
+  margin-left: auto;
+}
