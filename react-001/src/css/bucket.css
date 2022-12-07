@@ -1,0 +1,47 @@
+.bucket.main {
+  width: 60%;
+  margin: 20px auto;
+  box-shadow: 3px 3px 3px rgba(200, 200, 200, 0.8);
+}
+
+table.bucket.list {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 10px auto;
+}
+
+table.bucket.list th,
+table.bucket.list td {
+  padding: 6px 12px;
+  text-align: left;
+}
+
+table.bucket.list tr td.delete {
+  color: #777;
+  font-size: 20px;
+  font-weight: 900;
+  opacity: 0;
+  transition: 0.7s;
+}
+
+table.bucket.list tr:hover td.delete {
+  opacity: 1;
+}
+
+table.bucket.list tr td.delete:hover {
+  cursor: pointer;
+}
+
+.bucket input {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.bucket input:focus {
+  background-color: #ddd;
+}
+
+.bucket input:hover {
+  background-color: #eee;
+}
