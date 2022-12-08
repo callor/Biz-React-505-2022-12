@@ -29,3 +29,7 @@
 ### scss, sass 적용하기
 
 - `yarn add node-sass` 로 dependency 설정, npm 은 python 의존성 관계로 사용 불가
+
+### styled-components 사용하기
+
+- `yarn add styled-components`
