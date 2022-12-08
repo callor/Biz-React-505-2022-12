@@ -28,7 +28,7 @@ function App() {
         </Button>
         <Box />
       </Section>
-      <Article theme="yellow"></Article>
+      <Article yellow></Article>
     </div>
   );
 }
