@@ -1,0 +1,29 @@
+// red, blue 변수 선언하고 색상값 지정하기
+$red: rgb(255, 0, 0);
+$blue: rgb(0, 0, 255);
+
+// box 라는 함수 선언하기
+// size 를 매개변수로 받아 정사각형 모양 만들기
+@mixin box($size) {
+  $width: 32px * $size;
+  width: $width;
+  height: $width;
+}
+
+.container {
+  background-color: $blue;
+  color: white;
+  // .container.red
+  &.red {
+    background-color: $red;
+  }
+  // .container.box
+  &.box {
+    background-color: #aaa;
+    @include box(10);
+    // .container.box:hover
+    &:hover {
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+}

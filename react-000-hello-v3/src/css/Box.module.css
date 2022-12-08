@@ -1,0 +1,10 @@
+.container {
+  border: 1px solid #aaa;
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.container:hover {
+  background-color: #ddd;
+}
