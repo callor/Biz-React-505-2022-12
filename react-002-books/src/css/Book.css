@@ -1,0 +1,30 @@
+.Book .container {
+  width: 80%;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+}
+
+.Book input {
+  width: 90%;
+  margin: 5px auto;
+  padding: 8px;
+  border: 1px solid #aaa;
+}
+.Book input:hover {
+  background-color: #eee;
+}
+.Book input:focus {
+  background-color: #ccc;
+}
+
+.Book table {
+  width: 90%;
+  margin: 5px auto;
+}
+
+.Book th,
+.Book td {
+  text-align: left;
+  padding: 12px 16px;
+  user-select: none;
+}
