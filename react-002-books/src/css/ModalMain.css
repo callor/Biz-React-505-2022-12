@@ -1,0 +1,77 @@
+/* 
+Modal 은 위에 화면이 popup 되면 아래 보이는 화면에 이벤트가 설정되지 않아야 한다
+Modal 을 구현하기 위해서 가장 바깥쪽 박스를 전체화면크기로 하고 postion 을 고정
+position 을 고정한다는 것은 어떤 화면에도 간섭 없이 절대 좌표 위치에 box 를 만든다
+*/
+.Modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.Modal.openModal {
+  display: flex;
+  align-items: center;
+}
+
+.Modal button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.Modal button:hover {
+  color: #777;
+}
+
+.Modal > section {
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  background-color: white;
+  overflow: hidden;
+}
+
+.Modal > section > header {
+  position: relative;
+  padding: 16px 64px 16px 16px;
+  background-color: #f1f1f1;
+  font-weight: 700;
+}
+
+.Modal > section > header > button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #999;
+  background-color: transparent;
+}
+
+.Modal > section > footer {
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.Modal > section > footer > button {
+  padding: 6px 12px;
+  color: white;
+  background-color: #6c757d;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.Modal > section > main {
+  padding: 16px;
+  border-bottom: #ddd;
+  border-top: #ddd;
+}

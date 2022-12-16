@@ -1,8 +1,14 @@
 import { CLIENT_ID, CLIENT_SECRET } from "../config/NaverSecret";
 
+/**
+ * React 에서 API 를 참조할때 CORS 발생하는 경우
+ * package.json 에 "proxy": "https://openapi.naver.com/v1", 를 설정한다
+ * 그리고 fetch 에서는 proxy 로 설정된 주소 뒷부분만 사용한다
+ *
+ * 실제 네이버 API 에 요청하는 주소는 proxy + URL 형식으로 만들어진다
+ *
+ */
 const NAVER_BOOK_JSON_URL = "/search/book.json";
-// const NAVER_CLIENT_ID_KEY = "X-Naver-Client-Id";
-// const NAVER_CLIENT_SECRET_KEY = "X-Naver-Client-Secret";
 
 const getQueryData = async (query) => {
   const queryString = `${NAVER_BOOK_JSON_URL}?query=${encodeURIComponent(
