@@ -1,0 +1,12 @@
+table.Naver {
+  width: 100%;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+
+table.Naver tbody td {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

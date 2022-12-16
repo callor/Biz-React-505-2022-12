@@ -34,25 +34,32 @@ const BookMain = () => {
     fetchBook();
   }, []);
 
+  const modalOpenToggle = (name) => {
+    // [name] : true
+    // 이 코드가 실행되는 원리
+    // name 변수에 "naver" 라는 문자열이 전달되어 오면 naver:true 가 만들어진다
+    // name 변수에 "input" 라는 문자열이 전달되어 오면 input:true 가 만들어진다
+    // name 변수에 "naver" 라는 문자열이 전달되어 오면
+    //      naver : !openModal["naver"] == true 와 false 를 반전시키기
+    setOpenModal({ ...openModal, [name]: !openModal[name] });
+  };
+
   return (
     <div className="Book">
       <div>{bookData.b_title}</div>
       <BookList bookListData={bookListData} />
       <div>
-        <button onClick={() => setOpenModal({ ...openModal, input: true })}>
-          입력창
-        </button>
-        <button onClick={() => setOpenModal({ ...openModal, naver: true })}>
-          네이버
-        </button>
+        <button onClick={() => modalOpenToggle("input")}>입력창</button>
+        <button onClick={() => modalOpenToggle("naver")}>네이버</button>
       </div>
-      <Modal
-        open={openModal.input}
-        close={() => setOpenModal({ ...openModal, input: false })}
-      >
+      <Modal open={openModal.input} close={() => modalOpenToggle("input")}>
         <BookInput bookData={bookData} setBookData={setBookData} />
       </Modal>
-      <Modal open={openModal.naver}>
+      <Modal
+        open={openModal.naver}
+        close={() => modalOpenToggle("naver")}
+        width="1200"
+      >
         <NaverBookList bookListData={naverBookListData} />
       </Modal>
     </div>

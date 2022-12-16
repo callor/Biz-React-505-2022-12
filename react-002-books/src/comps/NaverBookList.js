@@ -1,10 +1,11 @@
+import "../css/NaverBookList.css";
+
 const NaverBookList = (props) => {
   const { bookListData } = props;
 
   const bookListView = bookListData.map((book) => {
     return (
       <tr key={book.isbn}>
-        <td>{book.isbn}</td>
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{book.publisher}</td>
@@ -12,7 +13,7 @@ const NaverBookList = (props) => {
     );
   });
   return (
-    <table>
+    <table className="Naver">
       <tbody>{bookListView}</tbody>
     </table>
   );
