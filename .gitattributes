@@ -1,4 +1,7 @@
+*.js linguist-vendored=false
 *.css linguist-vendored
+*.scss linguist-vendored
+*.sass linguist-vendored
 *.html linguist-vendored
 *.md linguist-vendored
 *.json linguist-vendored
