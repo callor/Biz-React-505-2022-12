@@ -15,6 +15,7 @@ const NaverBookList = (props) => {
     }
   };
 
+  console.log(bookListData);
   const bookListView = bookListData.map((book) => {
     return (
       <tr key={book.isbn} data-isbn={book.isbn}>
@@ -24,9 +25,18 @@ const NaverBookList = (props) => {
       </tr>
     );
   });
+
   return (
     <table className="Naver">
-      <tbody onClick={naverClickHander}>{bookListView}</tbody>
+      <tbody onClick={naverClickHander}>
+        {(bookListView.length > 0 && bookListView) || (
+          <tr>
+            <td colspan="2">
+              <strong>찾는 도서가 없음</strong>
+            </td>
+          </tr>
+        )}
+      </tbody>
     </table>
   );
 };
