@@ -36,9 +36,10 @@ obj2.age = 100;
 console.log(obj1, obj2);
 
 const makeArra = (array) => {
-  for (let i = 0; i < 10; i++) {
-    array[i] = 10;
-  }
+  //   for (let i = 0; i < 10; i++) {
+  //     array[i] = 10;
+  //   }
+  array = Array(100);
 };
 
 const myArray = [];
