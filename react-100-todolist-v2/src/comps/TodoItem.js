@@ -1,15 +1,17 @@
 import { useCallback } from "react";
 
 const TodoItem = ({ item, todoDelete, todoComplete }) => {
-  const deleteHandler = useCallback((e) => {
-    const target = e.target;
-    const uid = target.closest("DIV.item").dataset.id;
-
-    if (window.confirm(`할일 아이템을 삭제합니다`)) {
-      // TodoMain 에게 uid 를 보내서 삭제
-      todoDelete(uid);
-    }
-  });
+  const deleteHandler = useCallback(
+    (e) => {
+      const target = e.target;
+      const uid = target.closest("DIV.item").dataset.id;
+      if (window.confirm(`할일 아이템을 삭제합니다`)) {
+        // TodoMain 에게 uid 를 보내서 삭제
+        todoDelete(uid);
+      }
+    },
+    [todoDelete]
+  );
 
   const completeHander = (e) => {
     const target = e.target;
