@@ -2,6 +2,7 @@
 *.css linguist-vendored
 *.scss linguist-vendored
 *.sass linguist-vendored
+*.SASS linguist-vendored
 *.html linguist-vendored
 *.md linguist-vendored
 *.json linguist-vendored
