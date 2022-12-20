@@ -4,8 +4,12 @@ const TodoItem = ({ item, todoDelete, todoComplete, todoEditor }) => {
   const deleteHandler = useCallback(
     (e) => {
       const target = e.target;
-      const uid = target.closest("DIV.item").dataset.id;
-      if (window.confirm(`할일 아이템을 삭제합니다`)) {
+      const parent = target.closest("DIV.item");
+      const uid = parent.dataset.id;
+      const childDiv = parent.childNodes;
+      const content = childDiv[2].textContent;
+
+      if (window.confirm(`삭제확인?\n"${content}"\n할일 아이템을 삭제합니다`)) {
         // TodoMain 에게 uid 를 보내서 삭제
         todoDelete(uid);
       }
