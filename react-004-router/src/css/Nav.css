@@ -1,0 +1,36 @@
+nav.main {
+  background-color: rgb(69, 76, 222);
+  color: white;
+}
+nav.main ul {
+  list-style: none;
+  display: flex;
+}
+
+nav.main li:nth-of-type(4) {
+  margin-left: auto;
+}
+
+nav.main li:first-child {
+  margin-left: 10px;
+}
+
+nav.main li:last-child {
+  margin-right: 10px;
+}
+
+nav.main a {
+  /* 
+    a tag 는 기본속성이 inline tag 로서 width, height, padding 등의 적용이 안된다
+    이러한 속성들을 적용하기 위해서는 inline-block 속성으로 적용을 해야 한다
+    */
+  display: inline-block;
+  text-decoration: none;
+  /*
+    a tag 는 성질상 color 속성을 자동 상속받지 않는다
+    그래서 둘러쌓인 parent tag 의 속성과는 별개로 a tag 만의 color 성질을 갖는다
+    inherit 는 parent tag 의 color 속성을 강제로 상속받도록 한다.
+    */
+  color: inherit;
+  padding: 16px 16px;
+}
