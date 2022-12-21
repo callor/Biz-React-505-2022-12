@@ -17,6 +17,9 @@ const Nav = () => {
           <Link to="/user/login">로그인</Link>
         </li>
         <li>
+          <Link to="/user/profile/홍길동">홍길동</Link>
+        </li>
+        <li>
           <Link to="/user/join">회원가입</Link>
         </li>
         <li>

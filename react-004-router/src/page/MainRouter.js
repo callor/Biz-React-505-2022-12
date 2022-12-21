@@ -23,6 +23,7 @@ const MainRouter = () => {
       <Route path="/user" element={<UserMain />}>
         <Route path="login" element={<UserLogin />}></Route>
         <Route path="join" element={<UserJoin />}></Route>
+        <Route path="profile/:username" element={<UserJoin />}></Route>
       </Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
