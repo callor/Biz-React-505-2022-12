@@ -22,6 +22,12 @@
   font-weight: 700;
 }
 
+.Todo .input button:disabled {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #ddd;
+}
+
 .Todo .input button:hover {
   background-color: #ddd;
   color: black;
