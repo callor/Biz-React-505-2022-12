@@ -43,7 +43,20 @@ const TodoContextProvider = ({ children }) => {
     [setTodoContent, setTodoContentList]
   );
 
-  const todoDelete = useCallback(null, []);
+  const todoDelete = useCallback(async (uid) => {
+    try {
+      const res = await fetch(`/todo/delete/${uid}`, { method: "DELETE" });
+      const result = await res.json();
+      if (result.error) {
+        alert(result.error);
+        return false;
+      } else {
+        setTodoContentList([...result]);
+      }
+    } catch (err) {
+      alert("전송오류!");
+    }
+  }, []);
 
   // const todoDelete = useCallback(
   //   (uid) => {

@@ -27,7 +27,7 @@ const TodoInput = () => {
       />
       <button
         onClick={onClickHander}
-        disabled={todoContent.t_content.length < 5}
+        disabled={todoContent.t_content.length < 2}
       >
         Enter
       </button>
