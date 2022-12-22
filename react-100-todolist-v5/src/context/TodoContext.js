@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import { InitData } from "../data/InitData";
 import moment from "moment";
 
@@ -13,20 +19,84 @@ const useTodoContext = () => {
 // store 관리자
 const TodoContextProvider = ({ children }) => {
   const [todoContentList, setTodoContentList] = useState([]);
-  const [todoContent, setTodoContent] = useState(InitData());
+  const [todoContent, setTodoContent] = useState({ ...InitData() });
+
+  /**
+   * 프로젝트가 처음 구현될때
+   * 서버로 부터 데이터를 가져와서 최초 렌더링 하기
+   */
+
+  /**
+   * useEffect()
+   * 일종의 사용자 정의 event 만들기
+   * state 변수들이 변동되었을때 자동으로 실행되기를 바라는 코드
+   * todoContent state 변수가 어딘선가 값이 변경되면
+   * 자동으로 감지하고 실행되는 코드
+   */
+  // useEffect(() => console.log("시작하기"), [todoContent]);
+
+  /**
+   * useEffect() 를 빈(Blank) 매개변수([])인 상태로
+   * 코드를 작성하면
+   * 최초 화면이 렌더링될때
+   * 자동으로 한번만 실행되는 코드를
+   * 만들때
+   * didMount 생명주기에 실행되는 event 라고 한다
+   */
+  useEffect(() => console.log("또 시작하기"), []);
+
+  /**
+   * 서버로 부터 데이터를 가져오는 CallBack 함수
+   * 원래는 useEffect() 에서 서버데이터를 fetch 하면 되는데
+   * 내부 엔진적인 문제로 인하여 정상적으로 작동되지 않거나
+   * 무한 반복 실행한다.
+   * fetch 하는 Callback 함수를 별도로 만들고
+   * 이 Callback 함수를 useEffect() 에서 다시 호출하여 실행해 주어야 한다
+   */
+  const fetchAll = useCallback(async () => {
+    console.log("fetchAll");
+    try {
+      const res = await fetch("/todo");
+      const result = await res.json();
+      console.log(result);
+      if (result.error) {
+        alert(result.error);
+        setTodoContentList([]);
+      }
+      setTodoContentList([...result]);
+    } catch (error) {
+      alert("서버 접속 오류");
+      setTodoContentList([]);
+    }
+  }, [setTodoContentList]);
+  useEffect(() => {
+    (async () => {
+      await fetchAll();
+    })();
+  }, [fetchAll]);
 
   const todoInsert = useCallback(
     async (t_content) => {
-      const data = { ...InitData(), t_content };
+      let data = { ...InitData(), t_content };
+      let url = "/todo/insert";
+      let method = "POST";
+
+      console.log("insert", todoContent);
+      if (Number(todoContent.id) !== 0) {
+        data = { ...todoContent };
+        url = "/todo/update";
+        method = "PUT";
+      }
+
       const fetchOption = {
-        method: "POST",
+        method: method,
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       };
       try {
-        const res = await fetch("/todo/insert", fetchOption);
+        const res = await fetch(url, fetchOption);
         const result = await res.json();
         if (result.error) {
           alert(result.error);
@@ -40,7 +110,7 @@ const TodoContextProvider = ({ children }) => {
         alert("서버오류!!!");
       }
     },
-    [setTodoContent, setTodoContentList]
+    [setTodoContent, setTodoContentList, todoContent]
   );
 
   const todoDelete = useCallback(async (uid) => {
@@ -69,38 +139,42 @@ const TodoContextProvider = ({ children }) => {
   // );
 
   const todoComplete = useCallback(
-    (uid) => {
-      const completeList = todoContentList.map((item) => {
-        if (item.id === uid) {
-          // 완료버튼을 클릭했을때
-          // 완료일자, 시각이 세팅되어 있으면 clear, 그렇지 않으면 다시 세팅
-          item.e_date = item.e_date ? "" : moment().format("YYYY[-]MM[-]DD");
-          item.e_time = item.e_time ? "" : moment().format("HH:mm:ss");
+    async (uid) => {
+      try {
+        const res = await fetch(`/todo/complete/${uid}`, { method: "PUT" });
+        const result = await res.json();
+        if (result.error) {
+          return alert("서버 오류!");
         }
-        return item;
-      });
-      setTodoContentList(completeList);
+        setTodoContentList([...result]);
+      } catch (error) {
+        alert("서버 접속 오류");
+      }
     },
-    [setTodoContentList, todoContentList]
+    [setTodoContentList]
   );
 
-  const todoEditor = (uid) => {
-    // filter, map, forEach 등을 배열요소와 함께 처리하면
-    // 결과가 한개뿐이더라도 요소가 한개인 배열이 된다.
-    const editorList = todoContentList.filter((item) => {
-      return item.id === uid;
-    });
-    // 얕은 복사
-    // 객체의 성질때문에
-    // 만약 어딘선가 todoContentList 의 요소중에 값이 변경되면
-    // todoContent 데이터도 같이 변경되어 버린다
-    // setTodoContent(editorList[0])
+  // const todoComplete = useCallback(
+  //   (uid) => {
+  //     const completeList = todoContentList.map((item) => {
+  //       if (item.id === uid) {
+  //         // 완료버튼을 클릭했을때
+  //         // 완료일자, 시각이 세팅되어 있으면 clear, 그렇지 않으면 다시 세팅
+  //         item.e_date = item.e_date ? "" : moment().format("YYYY[-]MM[-]DD");
+  //         item.e_time = item.e_time ? "" : moment().format("HH:mm:ss");
+  //       }
+  //       return item;
+  //     });
+  //     setTodoContentList(completeList);
+  //   },
+  //   [setTodoContentList, todoContentList]
+  // );
 
-    // 깊은 복사
-    // 객체 요소를 하나씩 추출하여 따로 복사를 한다,
-    // state 변수들의 객체, 배열로 되어 있을때는 상당히 주의를 요한다.
+  const todoEditor = (uid) => {
+    const editorList = todoContentList.filter((item) => {
+      return Number(item.id) === Number(uid);
+    });
     setTodoContent({ ...editorList[0] });
-    console.log({ ...editorList[0] });
   };
 
   const props = {
