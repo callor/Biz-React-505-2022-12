@@ -2,18 +2,9 @@ import { usePuzzleContext } from "../context/PuzzleContext";
 import PuzzleItem from "./PuzzleItem";
 
 const PuzzleImage = () => {
-  const {
-    imgFile,
-    setImgFile,
-    piece,
-    setPiece,
-    puzzlePiece,
-    setPuzzlePiece,
-    puzzleShuffle,
-  } = usePuzzleContext();
+  const { imgFile, setImgFile, piece, setPiece, puzzlePiece, puzzleShuffle } =
+    usePuzzleContext();
   const imgOnChangeHandler = (e) => {
-    // setImgFile(...{});
-    // setPuzzlePiece(...[]);
     const uploadImgFile = {
       url: URL.createObjectURL(e.target.files[0]),
       fileName: e.target.files[0].name,

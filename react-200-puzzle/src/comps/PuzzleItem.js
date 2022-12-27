@@ -4,7 +4,7 @@ const PuzzleItem = ({ item }) => {
 
   const imgStyle = {
     backgroundIzmage: `url(${imgFile.url})`,
-    // backgroundSize: "500px 500px",
+    backgroundSize: "500px 500px",
     backgroundPositionX: `${item.posX}px`,
     backgroundPositionY: "0px",
     width: `${500 / (piece / 2)}px`,
