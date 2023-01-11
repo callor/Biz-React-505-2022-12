@@ -16,3 +16,11 @@
 
 - React 는 서버로 부터 JS 코드를 다운로드 받아서 Browser 에서 JS 코드를 실행하고, 화면을 그려내는 구조이다
 - CDN 을 연결하면 JS 코드가 외부의 Css, JS 파일을 다운로드 받는데 상당한 부담을 갖게 된다.
+
+## css 를 좀더 쉽게 구현하기 위하여 styled-components
+
+```
+npm install styled-components
+```
+
+- component 와 style 을 통합하여 구현할수 있는 도구
