@@ -1,25 +1,19 @@
-const Books = () => {
-  return (
-    <div className="w3-container w3-margin">
-      <ul>
-        <li>
-          <span>자바야 놀자</span>
-          <span>홍길동</span>
-          <span>광주출판</span>
-        </li>
-        <li>
-          <span>자바야 놀자</span>
-          <span>홍길동</span>
-          <span>광주출판</span>
-        </li>
-        <li>
-          <span>자바야 놀자</span>
-          <span>홍길동</span>
-          <span>광주출판</span>
-        </li>
-      </ul>
-    </div>
-  );
+import BookItem from "./BookItem";
+import { useBookContext } from "../../context/BookContextProvider";
+
+const BookListView = (props) => {
+  const { bookList } = props;
+  return bookList?.map((book) => {
+    return <BookItem book={book} key={book.isbn} />;
+  });
 };
 
-export default Books;
+const BookList = () => {
+  const context = useBookContext();
+  return (
+    <ul className="w3-ul book">
+      <BookListView bookList={context.bookList} />
+    </ul>
+  );
+};
+export default BookList;

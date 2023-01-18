@@ -28,7 +28,7 @@ const CardMain = (props) => {
       </header>
       <section className="w3-contaner">{props.children}</section>
       <footer className="w3-contaner w3-center w3-sand w3-padding-16">
-        hello
+        {props.footer || <address>CopyRight &copy callor@callor.com </address>}
       </footer>
     </div>
   );
