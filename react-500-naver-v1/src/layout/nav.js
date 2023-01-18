@@ -6,7 +6,7 @@ import { useUserContext } from "../context/UserContextProvider";
  * 이렇게 작성된 컴포넌트는 또다른 컴포넌트의 그룹원이 된다.
  */
 const Nav = () => {
-  const { loginUser } = useUserContext();
+  const { sessionUser } = useUserContext();
   /**
    * 컴포넌트에서 return
    * 일반적인 JS 모듈에서는 return 은 데이터를 되돌려주는 명령어이다
@@ -19,16 +19,16 @@ const Nav = () => {
       <a href="#">도서정보</a>
       <a href="#">내 도서</a>
 
-      {!loginUser.username && (
+      {!sessionUser.username && (
         <>
           <a href="#">로그인</a>
           <a href="#">회원가입</a>
         </>
       )}
-      {loginUser.username && (
+      {sessionUser.username && (
         <>
           <a href="#">로그아웃</a>
-          <a href="#">내 페이지</a>
+          <a href="#">내 페이지({sessionUser.username})</a>
         </>
       )}
     </nav>
