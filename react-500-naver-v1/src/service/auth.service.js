@@ -22,7 +22,7 @@ const setLogin = async (loginUser) => {
   };
   const response = await fetch("/api/user/login", fetchOption);
   const result = await response.json();
-  if (result.CODE == 200) {
+  if (result.CODE === 200) {
     // 정상적으로 데이터가 왔다
     //   alert(JSON.stringify(result.MSG));
     // setSessionUser(result.MSG);
