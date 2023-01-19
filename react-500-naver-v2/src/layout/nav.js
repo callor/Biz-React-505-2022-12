@@ -1,5 +1,6 @@
 import "../css/Nav.css";
 import { useUserContext } from "../context/UserContextProvider";
+import { Link } from "react-router-dom";
 /**
  * 내부에서 return () 함수가 있는 모듈은
  * react 에서는 컴포넌트 이다
@@ -15,20 +16,20 @@ const Nav = () => {
    */
   return (
     <nav className="w3-container w3-blue w3-bar main">
-      <a href="#">Home</a>
-      <a href="#">도서정보</a>
-      <a href="#">내 도서</a>
+      <Link to="/">Home</Link>
+      <Link to="/books">도서정보</Link>
+      <Link to="/books/mybook">내 도서</Link>
 
       {!sessionUser.username && (
         <>
-          <a href="#">로그인</a>
-          <a href="#">회원가입</a>
+          <Link to="/user/login">로그인</Link>
+          <Link to="/user/join">회원가입</Link>
         </>
       )}
       {sessionUser.username && (
         <>
-          <a href="#">로그아웃</a>
-          <a href="#">내 페이지({sessionUser.username})</a>
+          <Link to="/user/logout">로그아웃</Link>
+          <Link to="/user/mypage">내 페이지({sessionUser.username})</Link>
         </>
       )}
     </nav>

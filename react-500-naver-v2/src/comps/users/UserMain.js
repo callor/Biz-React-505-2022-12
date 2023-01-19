@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CardMain from "../CardMain";
 import UserLogin from "./UserLogin";
 
@@ -9,17 +10,17 @@ const UserMain = () => {
       header={<h1 className="w3-green w3-center">로그인</h1>}
       footer={
         <>
-          <a href="javascript:void(0)" className="w3-text-blue">
+          <Link to="/user/join" className="w3-text-blue">
             회원가입
-          </a>
+          </Link>
           &nbsp;|&nbsp;
-          <a href="javascript:void(0)" className="w3-text-blue">
+          <Link to="/user/find/id" className="w3-text-blue">
             아이디찾기
-          </a>
+          </Link>
           &nbsp;|&nbsp;
-          <a a href="javascript:void(0)" className="w3-text-blue">
+          <Link to="/user/find/password" className="w3-text-blue">
             비밀번호찾기
-          </a>
+          </Link>
         </>
       }
     >
