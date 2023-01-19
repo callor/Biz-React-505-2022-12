@@ -1,0 +1,25 @@
+div.Card-main {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.Card-main header {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+div.Card-main section {
+  flex: 1;
+  width: 90%;
+  overflow: auto;
+}
+
+div.Card-main footer {
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
