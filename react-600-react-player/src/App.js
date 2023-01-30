@@ -35,7 +35,6 @@ function App() {
       />
     );
   });
-  // setPlayListState(videoPlayer);
   return <div className="App">{videoPlayer}</div>;
 }
 
