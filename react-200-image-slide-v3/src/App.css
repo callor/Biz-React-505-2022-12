@@ -54,17 +54,7 @@ div.image-box {
   left: 0;
   display: flex;
   transition: transform 0.7s;
-}
-
-div.image-box:hover {
-  animation-play-state: paused;
-}
-
-div.animation-left {
-  animation: image_left 10s linear infinite;
-}
-div.animation-right {
-  animation: image_right 10s linear infinite;
+  z-index: 100;
 }
 
 div.botton-box {
@@ -79,21 +69,4 @@ div.botton-box {
 div.button:hover {
   color: blue;
   cursor: pointer;
-}
-
-@keyframes image_left {
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(-3500px);
-  }
-}
-@keyframes image_right {
-  0% {
-    transform: translateX(-3500px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
 }
