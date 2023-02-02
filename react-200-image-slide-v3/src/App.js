@@ -6,8 +6,7 @@ import { useState } from "react";
 const IMAGE_WIDTH = 500;
 
 function App() {
-  const [potion, setPosition] = useState(0);
-  const [currentPos, setCurrentPos] = useState(0);
+  const [postion, setPosition] = useState(0);
   const [mouseX, setMouseX] = useState(0);
   const imagePrev = () => {
     setPosition(true);
@@ -16,38 +15,31 @@ function App() {
     setPosition(false);
   };
 
-  const onDragHandler = (e) => {
-    // const box = e.currentTarget;
-    // const left = box.getBoundingClientRect().left;
-    // setPosition(e.pageX);
-    let newPotion = potion;
-    const newMouseX = e.clientX;
-
-    console.log(mouseX, newMouseX);
-    if (newMouseX < mouseX) {
-      newPotion = currentPos - newMouseX;
-    } else if (newMouseX > mouseX) {
-      newPotion = currentPos + newMouseX;
-    }
-    // setPosition(newPotion);
-    // setMouseX(newMouseX);
-  };
-
   const onDragOverHandler = (e) => {
     e.preventDefault();
     e.currentTarget.style.opacity = "0.4";
-    setMouseX(e.clientX);
   };
 
   const onDragEndHandler = (e) => {
     const box = e.currentTarget;
     box.style.opacity = "1";
-    console.log("Drag End", e.clientX);
-    if (e.clientX < IMAGE_WIDTH * 0.5) {
-      setPosition(potion - IMAGE_WIDTH);
-    } else if (e.clientX > IMAGE_WIDTH * 0.5) {
-      setPosition(potion + IMAGE_WIDTH);
+    // if (e.clientX < IMAGE_WIDTH * 0.5) {
+    //   setPosition(potion - IMAGE_WIDTH);
+    // } else if (e.clientX > IMAGE_WIDTH * 0.5) {
+    //   setPosition(potion + IMAGE_WIDTH);
+    // }
+
+    if (e.pageX < mouseX && postion > -1 * (images.length - 1) * IMAGE_WIDTH) {
+      setPosition(postion - IMAGE_WIDTH);
+    } else if (e.pageX > mouseX && postion < 0) {
+      setPosition(postion + IMAGE_WIDTH);
     }
+    setMouseX(e.pageX);
+  };
+
+  const onMouseDownHandler = (e) => {
+    console.log(e.pageX);
+    setMouseX(e.pageX);
   };
 
   return (
@@ -60,9 +52,10 @@ function App() {
         draggable="true"
         onDragOver={onDragOverHandler}
         onDragEnd={onDragEndHandler}
+        onMouseDown={onMouseDownHandler}
       >
         <div
-          style={{ transform: `translateX(${potion}px)` }}
+          style={{ transform: `translateX(${postion}px)` }}
           className="image-box"
           draggable="false"
         >
@@ -92,7 +85,7 @@ function App() {
         <div className="button" onClick={imagePrev}>
           Prev
         </div>
-        <p>{potion}</p>
+        <p>{postion}</p>
         <div className="button" onClick={imageNext}>
           Next
         </div>
