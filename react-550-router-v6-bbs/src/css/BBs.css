@@ -1,0 +1,55 @@
+table.bbs.list {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+table.bbs.list th,
+table.bbs.list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid#ddd;
+  border-top: 1px solid #ddd;
+}
+
+table.bbs.list tr:hover {
+  background-color: #ddd;
+}
+
+div.pageNavBar {
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+  justify-content: center;
+}
+
+div.pageNavBar a {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #777;
+}
+
+div.pageNavBar a.active {
+  background-color: rgb(73, 73, 229);
+  color: white;
+}
+
+div.bbs.search-box {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin: 5px auto;
+}
+
+div.bbs.search-box * {
+  margin: 10px;
+  padding: 8px;
+}
+div.bbs.search-box select {
+  flex: 1;
+}
+
+div.bbs.search-box input.search {
+  flex: 3;
+}
