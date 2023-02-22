@@ -1,0 +1,38 @@
+ul.book li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul.book span {
+  text-align: left !important;
+}
+
+ul.book span {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+ul.book span.title {
+  width: 250px;
+}
+
+ul.book span.image {
+  width: 50px;
+}
+
+ul.book span.add {
+  width: 50px;
+  color: #777;
+  opacity: 0;
+  transition: 0.7s;
+  font-size: 30px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+ul.book li:hover span.add {
+  opacity: 1;
+}
