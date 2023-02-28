@@ -1,0 +1,27 @@
+nav.main {
+  background-color: rgb(86, 86, 216);
+  color: white;
+}
+nav.main ul {
+  list-style: none;
+  display: flex;
+}
+
+nav.main li:first-child {
+  margin-left: auto;
+}
+nav.main li:last-child {
+  margin-right: auto;
+}
+
+nav.main a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 16px;
+}
+
+nav.main a:hover {
+  background-color: #ddd;
+  color: black;
+}
