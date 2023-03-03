@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Nav from "./layout/Nav";
 import { Outlet } from "react-router-dom";
+import Inputs from "./comps/Inputs";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Nav />
+      <Inputs />
       <Outlet />
     </div>
   );
