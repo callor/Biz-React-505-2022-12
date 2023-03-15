@@ -19,7 +19,7 @@ const MainRouterProvider = () => {
       children: [
         {
           path: "todo",
-          loader: (params) => todoMainLoader(params, loginUser),
+          loader: async (params) => await todoMainLoader(params, loginUser),
           element: <TodoMain />,
         },
         {

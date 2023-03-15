@@ -1,5 +1,6 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
 
 export const todoMainLoader = (params, loginUser) => {
   /**
@@ -13,11 +14,13 @@ export const todoMainLoader = (params, loginUser) => {
 };
 
 const TodoMain = () => {
+  // const { getTodoList } = useDBContext();
   // loader 가 return 한 실제 데이터
   const loginUser = useLoaderData();
   return (
     <>
       <TodoInput />
+      <TodoList />
     </>
   );
 };
