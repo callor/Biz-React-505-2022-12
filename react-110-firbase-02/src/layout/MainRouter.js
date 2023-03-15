@@ -1,18 +1,27 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import App from "../App";
 import EmailLogin from "../comps/EmailLogin";
 import GoogleLogin from "../comps/GoogleLogin";
+import TodoMain, { todoMainLoader } from "../comps/todo/TodoMain";
 import UserMain from "../comps/UserMain";
-import { useFirebaseContext } from "../provider/FirebaseProvider";
+import { useAuthContext } from "../firebase/AuthProvider";
 
 const MainRouterProvider = () => {
-  const { loginUser } = useFirebaseContext();
+  const { loginUser, googleSignOut } = useAuthContext();
   const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
       children: [
-        { path: "todo", element: <h1>TODO</h1> },
+        {
+          path: "todo",
+          loader: (params) => todoMainLoader(params, loginUser),
+          element: <TodoMain />,
+        },
         {
           path: "user",
           element: <UserMain />,
@@ -28,7 +37,14 @@ const MainRouterProvider = () => {
               ),
             },
             { path: "mypage", element: <h1>MY PAGE</h1> },
-            { path: "logout", element: <h1>LOGOUT</h1> },
+            {
+              path: "logout",
+              loader: async ({ params }) => {
+                await googleSignOut();
+                return redirect("/");
+              },
+              element: <h1>LOGOUT</h1>,
+            },
           ],
         },
       ],

@@ -17,15 +17,15 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { firebaseApp } from "../firebase/FirebaseConfig";
+import { firebaseApp } from "./FirebaseConfig";
 const auth = getAuth(firebaseApp);
 
-const FirebaseContext = createContext();
-export const useFirebaseContext = () => {
-  return useContext(FirebaseContext);
+const AuthContext = createContext();
+export const useAuthContext = () => {
+  return useContext(AuthContext);
 };
 
-export const FirebaseContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
   const [loginUser, setLoginUser] = useState();
   const [loginMessage, setLoginMessage] = useState({ id: "", message: "" });
 
@@ -89,9 +89,5 @@ export const FirebaseContextProvider = ({ children }) => {
     loginMessage,
   };
 
-  return (
-    <FirebaseContext.Provider value={props}>
-      {children}
-    </FirebaseContext.Provider>
-  );
+  return <AuthContext.Provider value={props}>{children}</AuthContext.Provider>;
 };

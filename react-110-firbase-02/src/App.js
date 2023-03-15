@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { firebaseConfig } from "./firebase/FirebaseConfig";
 import Nav from "./layout/Nav";
 import { Outlet } from "react-router-dom";
 
