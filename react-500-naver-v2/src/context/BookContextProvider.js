@@ -8,11 +8,14 @@ export const useBookContext = () => {
 export const BookContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [bookList, setBookList] = useState([]);
+  const [pageNum, setPageNum] = useState(1);
 
   const naver_search = async () => {
-    const queryString = `/api/book/search?search=${search}`;
+    const queryString = `/api/book/search?search=${search}&page=${pageNum}`;
     console.log("query", queryString);
-    const respo = await fetch(`/api/book/search?search=${search}`);
+    const respo = await fetch(
+      `/api/book/search?search=${search}&page=${pageNum}`
+    );
     const result = await respo.json();
     if (!result?.CODE) {
       setBookList([...result]);
@@ -26,6 +29,7 @@ export const BookContextProvider = ({ children }) => {
     bookList,
     setBookList,
     naver_search,
+    setPageNum,
   };
   return (
     <BookContext.Provider value={propsStore}>{children}</BookContext.Provider>
